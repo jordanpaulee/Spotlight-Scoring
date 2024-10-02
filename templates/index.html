@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game App</title>
+</head>
+<body>
+    <h1>Player Registration</h1>
+    <form action="/register" method="POST">
+        <input type="text" name="name" placeholder="Player Name" required>
+        <button type="submit">Register</button>
+    </form>
+
+    <h2>Scoreboard</h2>
+    <table>
+        <tr>
+            <th>Player</th>
+            <th>Score</th>
+        </tr>
+        {% for player in players %}
+        <tr>
+            <td>{{ player.name }}</td>
+            <td>{{ player.score }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Update Scores</h3>
+    <form action="/update_score" method="POST">
+        <select name="player_id">
+            {% for player in players %}
+            <option value="{{ player.id }}">{{ player.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="number" name="score" placeholder="New Score" required>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
